@@ -21,7 +21,11 @@ Cadastrar nova diretoria
 
 
 Editar diretoria
+<<<<<<< HEAD
     [Arguments]    ${id_diretoria}    ${novo_nome}    
+=======
+    [Arguments]    ${id_diretoria}    ${novo_nome}    ${expected_status}=200
+>>>>>>> fe7fbda69ad8e7615ea2a4bde7a63c7709b68ec7
     [Documentation]    Envia uma requisição PUT para editar o nome de uma diretoria.
     ${body}=           Create Dictionary    diretoria=${novo_nome}
     ${response}=       PUT On Session
