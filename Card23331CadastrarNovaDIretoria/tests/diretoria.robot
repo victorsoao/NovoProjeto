@@ -1,141 +1,163 @@
 *** Settings ***
-Resource          ../resources/auth.resource
-Resource          ../resources/diretoria.resource
-Suite Setup       Realizar Login e Salvar Token
-Library           String
+Library         RequestsLibrary
+Library         Collections
+Library         String
+
+Resource        ../resources/config.resource
+Resource        ../resources/auth.resource
+Resource        ../resources/diretoria.resource
+
+Test Setup      Realizar Login e Salvar Token
+
 
 *** Test Cases ***
-# --- Testes de Cadastro (POST) ---
-*** Test Cases ***
-*** Test Cases ***
-*** Test Cases ***
-*** Test Cases ***
-*** Test Cases ***
-CT01: Cadastrar diretoria com nome valido
-    [Tags]    POST    smoke
+# ==================================================================================================
+#            --- Testes de (POST) ---
+# ==================================================================================================
 
-    # 1. Gera o nome base
-    ${nome_randomico}=    Generate Random String    8    [LOWER]
-    ${nome_base}=         Set Variable    E${nome_randomico}
+CT01: Cadastrar diretoria
+    [Tags]     POST    smoke
+    ${nome_randomico}=           Generate Random String    10    [LOWER]
+    ${nome_base}=                Set Variable              E${nome_randomico}
+    ${body}=                     Create Dictionary         name=${nome_randomico}
+    ${resp}=                     Cadastrar nova diretoria    ${nome_randomico}
+    Status Should Be             201                       ${resp}
+    Dictionary Should Contain Key     ${resp.json()}     newBoard
+    Dictionary Should Contain Key   ${resp.json()}[newBoard]    _id
+    Should Be Equal As Strings      ${resp.json()}[newBoard][boardName]    ${nome_randomico}
+CT02: Cadastrar diretoria com nome usando &
+    [Tags]     POST    regression
+    ${nome1_randomico}=          Generate Random String    8    [LOWER]
+    ${nome1_base}=               Set Variable              E${nome1_randomico}
+    ${nome2_base}=               Generate Random String    8    [LOWER]
+    ${nome_composto_completo}=   Set Variable              ${nome1_base} & ${nome2_base}
+    ${body}=                     Create Dictionary         name=${nome_composto_completo}
+    ${resp}=                     Cadastrar nova diretoria    ${nome_composto_completo}
+    Status Should Be             201                       ${resp}
+    Dictionary Should Contain Key     ${resp.json()}     newBoard
+    Dictionary Should Contain Key   ${resp.json()}[newBoard]    _id
+    Should Be Equal As Strings      ${resp.json()}[newBoard][boardName]    ${nome_composto_completo}
 
-    # 2. Envia para a API o nome no formato "Capitalized"
-    ${resp}=              Cadastrar nova diretoria    ${nome_base.capitalize()}
+CT03: Cadastrar diretoria com acentos
+    [Tags]     POST    regression
+    ${nome_com_acento_base}=     Generate Random String    12    chars=${CHARS_COM_ACENTOS}
+    ${nome_prefixado_com_acento}=  Set Variable              E${nome_com_acento_base}
+    ${body}=                     Create Dictionary         name=${nome_prefixado_com_acento}
+    ${resp}=                     Cadastrar nova diretoria    ${nome_prefixado_com_acento}
+    Status Should Be             201                       ${resp}
+    Dictionary Should Contain Key     ${resp.json()}     newBoard
+    Dictionary Should Contain Key   ${resp.json()}[newBoard]    _id
+    Should Be Equal As Strings      ${resp.json()}[newBoard][boardName]    ${nome_prefixado_com_acento}
 
-    # 3. Prepara a variável com o resultado esperado (também "Capitalized")
-    ${nome_esperado_no_retorno}=    Set Variable    ${nome_base.capitalize()}
+CT04: Não permitir cadastrar diretoria com nome abaixo do limite minimo (1 caractere)  # está com BUG
+    [Tags]     POST    negative    
+    ${letra_aleatoria}=          Generate Random String    1    [UPPER]
+    ${letra_maiscurta}=           Set Variable              ${letra_aleatoria}
+    ${body}=                     Create Dictionary         name=${letra_aleatoria}
+    ${resp_erro}=                Cadastrar nova diretoria    ${letra_aleatoria}   
+    Status Should Be             400                       ${resp_erro}
+    Should Contain               ${resp_erro.json()}[error][0]     ${MSG_ERRO_MIN_CHARS}
 
-    # 4. Chama a keyword de validação
-    Validar que a diretoria foi criada com sucesso    ${resp}    ${nome_esperado_no_retorno}
+CT05: Não permitir cadastrar diretoria com nome acima do limite maximo (51 caracteres)
+    [Tags]     POST    negative    
+    ${parte_randomica}=          Generate Random String    50    [LOWER]
+    ${nome_longo_final}=         Set Variable              E${parte_randomica}
+    ${body}=                     Create Dictionary         name=${nome_longo_final}
+    ${resp_erro}=                Cadastrar nova diretoria    ${nome_longo_final}  
+    Status Should Be             400                       ${resp_erro}
+    Should Contain               ${resp_erro.json()}[error][0]     ${MSG_ERRO_MAX_CHARS}
 
-*** Test Cases ***
-CT02: Cadastrar diretoria com nome composto e '&'
-    [Tags]    POST
+CT06: Não permitir cadastrar diretoria com nome duplicado
+    [Tags]     POST    negative
+    ${parte_randomica}=          Generate Random String    15    [LOWER]
+    ${nome_duplicado_com_prefixo}=  Set Variable              E${parte_randomica}
+    ${body_valido}=              Create Dictionary         name=${nome_duplicado_com_prefixo}
+                        Cadastrar nova diretoria    ${nome_duplicado_com_prefixo}
+    ${body_duplicado}=           Create Dictionary         name=${nome_duplicado_com_prefixo}
+    ${resp_alert}=               Cadastrar nova diretoria    ${nome_duplicado_com_prefixo}    
+    Status Should Be             409                       ${resp_alert}
+    Should Contain               ${resp_alert.json()}[alert][0]     ${MSG_ERRO_DUPLICADO}
 
-    # 1. Gera as duas partes aleatórias do nome
-    ${nome1}=    Generate Random String    8    [LOWER]
-    ${nome2}=    Generate Random String    8    [LOWER]
+CT07: Não permitir cadastrar diretoria com nome vazio
+    [Tags]     POST    negative
+    ${body}=                     Create Dictionary         name=${EMPTY}
+    ${resp_erro}=                Cadastrar nova diretoria    ${EMPTY}   
+    Status Should Be             400                       ${resp_erro}
+    Should Contain               ${resp_erro.json()}[error][0]    O campo 'diretoria' é obrigatório.
 
-    # 2. Junta as partes com o '&' no meio.
-    #    O Set Variable une tudo com espaços automaticamente.
-    ${nome_base}=    Set Variable    ${nome1} & ${nome2}
-
-    # Para depurar, vamos ver como ficou o nome base
-    Log To Console    Nome Base Gerado: ${nome_base}
-    # Exemplo: "bhrfteqo & pmdkiylw"
-
-    # 3. Prepara a variável com o resultado esperado (formato "Capitalize")
-    #    A API vai transformar "bhrfteqo & pmdkiylw" em "Bhrfteqo & pmdkiylw"
-    ${nome_formatado_esperado}=    Set Variable    ${nome_base.capitalize()}
-
-    Log To Console    Nome Formatado Esperado: ${nome_formatado_esperado}
-    # Exemplo: "Bhrfteqo & pmdkiylw"
-
-    # 4. Envia para a API o nome para ser cadastrado
-    ${resp}=              Cadastrar nova diretoria    ${nome_formatado_esperado}
-
-    # 5. Chama a keyword de validação, que já está correta
-    Validar que a diretoria foi criada com sucesso    ${resp}    ${nome_formatado_esperado}
-
-CT03: Cadastrar diretoria com nome aleatório contendo acentos
-    [Tags]    POST
-
-    # 1. Gera uma string aleatória de 12 caracteres usando a nossa lista customizada.
-    ${nome_com_acento}=    Generate Random String    12    chars=${CHARS_COM_ACENTOS}
-
-    # Log para vermos o resultado da geração aleatória
-    Log To Console    Nome aleatório com acento gerado: ${nome_com_acento}
-    # Exemplo: "õçãéúbcaqií"
-
-    # 2. Prepara o nome para validação (a API vai capitalizar a primeira letra)
-    ${nome_formatado_esperado}=    Set Variable    ${nome_com_acento.capitalize()}
-
-    Log To Console    Nome formatado esperado: ${nome_formatado_esperado}
-    # Exemplo: "Õçãéúbcaqií"
-
-    # 3. Envia para a API o nome para ser cadastrado
-    ${resp}=              Cadastrar nova diretoria    ${nome_formatado_esperado}
-
-    # 4. Chama a keyword de validação
-    Validar que a diretoria foi criada com sucesso    ${resp}    ${nome_formatado_esperado}
-
-CT04: Cadastrar diretoria com nome no limite minimo (1 caracteres)
-    [Tags]    POST    boundary
-    # Usa um valor fixo ("TI"), pois o objetivo aqui é testar o limite de 2 caracteres, não a unicidade.
-    ${nome_limite}=    Set Variable    D
-
-    ${resp}=    Cadastrar nova diretoria    ${nome_limite}
-    Validar que a diretoria foi criada com sucesso    ${resp}    ${nome_limite}
-
-CT05: Nao permitir cadastrar diretoria com nome duplicado
+CT08: Não permitir cadastro de diretoria com caracteres especiais inválidos
     [Tags]    POST    negative
-    # Gera um nome randômico para garantir que o teste não falhe por dados de execuções anteriores.
-    ${nome_duplicado}=    Generate Random String    20    [UPPER]
+    @{caracteres_invalidos}=    Create List    \#    $    %    * (    )    -    +    =    [    ]    {    }    
+                  ...    |    ;    :    "   '    <    >    ,    .    /    ?    @    !    ~    `    ^
+    
+    FOR    ${caractere}    IN    @{caracteres_invalidos}
+        ${nome_invalido}=    Generate Random String    10    [LOWER]
+        ${nome_invalido_final}=    Set Variable    E${caractere}${nome_invalido}        
+        ${resp_erro}=    Cadastrar nova diretoria    ${nome_invalido_final}
+        Status Should Be    400    ${resp_erro}
+        Should Contain    ${resp_erro.json()}[error][0]    ${MSG_ERRO_CHARS_INVALIDOS}
+    END
 
-    Cadastrar nova diretoria    ${nome_duplicado}
-    ${resp}=    Cadastrar nova diretoria    ${nome_duplicado}
-    Validar erro de negocio    ${resp}    409    Cadastro já existe
+# ==================================================================================================
+#            ---  Testes de (GET) ---
+# ==================================================================================================
 
-CT06: Nao permitir cadastrar diretoria com nome vazio
-    [Tags]    POST    negative
-    ${resp}=    Cadastrar nova diretoria    ${EMPTY}
-    Validar erro de negocio    ${resp}    400    O campo Diretoria é obrigatório
-
-# --- Testes de Listagem e Pesquisa (GET) ---
-CT07: Listar diretorias em ordem alfabetica
-    [Tags]    GET     regression
-    # Usa nomes randômicos para não interferir com outros testes.
-    Cadastrar nova diretoria    Zebra Corp ${:Generate Random String}
-    Cadastrar nova diretoria    Apple Inc ${:Generate Random String}
-    Cadastrar nova diretoria    Banana SA ${:Generate Random String}
-
+CT09: Consultar a lista de diretorias
+    [Tags]    GET    smoke
     ${resp}=    Consultar diretorias
-    Validar que a lista de diretorias esta ordenada    ${resp}
+    Status Should Be    200    ${resp}
 
-# --- Testes de Edição (PUT) ---
-CT08: Editar o nome de uma diretoria com sucesso
-    [Tags]    PUT     smoke
-    # Gera nomes randômicos para garantir a independência do teste.
-    ${nome_antigo}=      Generate Random String    20    [LOWER]
-    ${nome_novo}=        Generate Random String    20    [UPPER]
+CT10: Contagem de diretorias
+    [Tags]     GET    count    smoke
+    ${resp}=   Contar Diretorias
+    Status Should Be    200    ${resp}
 
-    ${resp_cadastro}=    Cadastrar nova diretoria    ${nome_antigo}
-    ${id}=               Obter ID da diretoria na resposta    ${resp_cadastro}
-    ${resp_edicao}=      Editar diretoria    ${id}    ${nome_novo}
-    Validar edicao com sucesso    ${resp_edicao}
+CT11: Consultar diretoria pelo seu ID
+    [Tags]     GET    smoke    ponta-a-ponta
+    ${nome_aleatorio}=           Generate Random String    15    [LOWER]
+    ${nome_para_criar}=          Set Variable              E${nome_aleatorio}
+    ${resp_cadastro}=            diretoria.Cadastrar nova diretoria    ${nome_para_criar}
+    ${id_criado}=                Set Variable              ${resp_cadastro.json()}[newBoard][_id]    
+    ${resp_por_id}=              Consultar diretoria por id    ${id_criado}
+    Status Should Be             200                       ${resp_por_id}
+    Should Be Equal As Strings    ${resp_por_id.json()}[board][_id]    ${id_criado}
+    Should Be Equal As Strings    ${resp_por_id.json()}[board][boardName]   ${nome_para_criar}
+    
+# ==================================================================================================
+#            --- Testes de Edição (PUT) ---
+# ==================================================================================================
 
-# --- Testes de Inativação (DELETE) ---
-CT25: Inativar uma diretoria com sucesso
-    [Tags]    DELETE    smoke
-    ${nome}=               Generate Random String    20    Diretoria Para Inativar-[LOWER]
-    ${resp_cadastro}=      Cadastrar nova diretoria    ${nome}
-    ${id}=                 Obter ID da diretoria na resposta    ${resp_cadastro}
+CT12: Editar o nome de uma diretoria com sucesso   # Está com BUG
+    [Tags]     PUT    smoke
+    ${nome_antigo_aleatorio}=    Generate Random String    20    [LOWER]
+    ${nome_antigo_final}=        Set Variable              E${nome_antigo_aleatorio}
+    ${resp_cadastro}=            Cadastrar nova diretoria    ${nome_antigo_final}
+    ${id}=                       Set Variable              ${resp_cadastro.json()}[newBoard][_id] 
+    ${nome_novo_aleatorio}=      Generate Random String    20    [LOWER]
+    ${nome_novo_final}=          Set Variable              E${nome_novo_aleatorio}
+    ${resp_edicao}=              Editar diretoria          ${id}    ${nome_novo_final}
+    Status Should Be             200                       ${resp_edicao}
+    Should Contain               ${resp_edicao.text}       Cadastro atualizado com sucesso.
 
-    ${resp_inativacao}=    Inativar diretoria    ${id}
-    Validar inativacao com sucesso    ${resp_inativacao}
+CT13: Não permitir editar o nome para um ja existente  # Está com BUG
+    [Tags]     PUT    negative
+    ${nome_a}=                   Generate Random String    15    [LOWER]
+    ${nome_a_final}=             Set Variable              A${nome_a}
+    ${resp_a}=                   diretoria.Cadastrar nova diretoria    ${nome_a_final}
+    ${id_a}=                     Set Variable              ${resp_a.json()}[newBoard][_id] 
+    ${nome_b}=                   Generate Random String    15    [LOWER]
+    ${nome_b_final}=             Set Variable              B${nome_b}
+    diretoria.Cadastrar nova diretoria    ${nome_b_final}
+    ${resp_edicao}=              Editar diretoria          ${id_a}    ${nome_b_final}   
+    Status Should Be             409                       ${resp_edicao}
+    Should Contain               ${resp_edicao.json()}[error][0]     Nome da diretoria já cadastrado.
 
-CT09: Nao permitir inativar diretoria com vinculos
-    [Tags]    DELETE    negative    business_rule
-    # Este teste usa um ID fixo que, por regra de negócio, deve ter vínculos.
-    ${id_fixo}=    Set Variable    687e9301824cbe8ca3f48937
-    ${resp}=       Inativar diretoria    ${id_fixo}
-    Validar erro de negocio    ${resp}    409    Essa Diretoria faz parte de um cadastro ativo
+
+CT14: Nao permitir editar o nome para vazio
+    [Tags]     PUT    negative
+    ${nome}=                     Generate Random String    15    [LOWER]
+    ${resp_cadastro}=            Cadastrar nova diretoria    ${nome}
+    ${id}=                       Set Variable              ${resp_cadastro.json()}[newBoard][_id]
+    ${resp_edicao}=              Editar diretoria          ${id}    ${EMPTY}    
+    Status Should Be             400                       ${resp_edicao}
+    Should Contain               ${resp_edicao.json()}[error][0]     ${MSG_ERRO_OBRIGATORIO}

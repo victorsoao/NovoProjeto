@@ -19,4 +19,4 @@ Realizar Login e Salvar Token
     Status Should Be    200    ${response}
 
     ${token}=         Set Variable    ${response.json()["token"]}
-    Set Suite Variable    ${AUTH_TOKEN}    ${token}  # <-- O token é salvo para toda a suíte
+    Set Suite Variable    ${AUTH_TOKEN}    ${token}  
