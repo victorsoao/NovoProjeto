@@ -49,7 +49,7 @@ CT03: Cadastrar diretoria com acentos
     Dictionary Should Contain Key   ${resp.json()}[newBoard]    _id
     Should Be Equal As Strings      ${resp.json()}[newBoard][boardName]    ${nome_prefixado_com_acento}
 
-CT04: Não permitir cadastrar diretoria com nome abaixo do limite minimo (2 caractere)  # está com BUG
+CT04: Não permitir cadastrar diretoria com nome abaixo do limite minimo (2 caractere) 
     [Tags]     POST    negative    
     ${letra_aleatoria}=          Generate Random String    1    [UPPER]
     ${letra_maiscurta}=           Set Variable              ${letra_aleatoria}

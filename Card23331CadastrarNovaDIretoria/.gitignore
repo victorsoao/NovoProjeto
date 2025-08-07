@@ -1,0 +1,17 @@
+# Ignora arquivos XML e HTML gerados
+*.xml
+*.html
+
+# Ignora arquivos de cache e diretórios de build
+.DS_Store
+*.log
+/build/
+/dist/
+
+# Ignora arquivos de ambientes virtuais
+venv/
+.env
+
+# Ignora dependências do Robot Framework
+__pycache__/
+.robot/
