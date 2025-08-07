@@ -49,7 +49,7 @@ CT03: Cadastrar diretoria com acentos
     Dictionary Should Contain Key   ${resp.json()}[newBoard]    _id
     Should Be Equal As Strings      ${resp.json()}[newBoard][boardName]    ${nome_prefixado_com_acento}
 
-CT04: Não permitir cadastrar diretoria com nome abaixo do limite minimo (1 caractere)  # está com BUG
+CT04: Não permitir cadastrar diretoria com nome abaixo do limite minimo (2 caractere)  # está com BUG
     [Tags]     POST    negative    
     ${letra_aleatoria}=          Generate Random String    1    [UPPER]
     ${letra_maiscurta}=           Set Variable              ${letra_aleatoria}
@@ -114,8 +114,8 @@ CT09: Consultar a lista de diretorias
     ${resp}=    Consultar diretorias
     Status Should Be    200    ${resp}
 
-CT10: Consultar contagem de diretorias com sucesso
-    [Tags]     GET    count    smoke
+CT10: Consultar contagem de diretorias
+    [Tags]     GET    smoke    count 
     ${resp}=   Contar Diretorias
     Status Should Be    200    ${resp}
 
@@ -134,36 +134,36 @@ CT11: Consultar diretoria pelo seu ID
 #            --- Testes de Edição (PUT) ---
 # ==================================================================================================
 
-CT12: Editar o nome de uma diretoria com sucesso   
+CT12: Editar o nome de uma diretoria
     [Tags]     PUT    smoke
-    ${nome_antigo_aleatorio}=    Generate Random String    20    [LOWER]
-    ${nome_antigo_final}=        Set Variable              E${nome_antigo_aleatorio}
-    ${resp_cadastro}=            Cadastrar nova diretoria    ${nome_antigo_final}
-    ${id}=                       Set Variable              ${resp_cadastro.json()}[newBoard][_id] 
-    ${nome_novo_aleatorio}=      Generate Random String    20    [LOWER]
-    ${nome_novo_final}=          Set Variable              E${nome_novo_aleatorio}
-    ${resp_edicao}=              Editar diretoria          ${id}  ${nome_novo_final}
+    ${nome_antigo_aleatorio}    Generate Random String    20    [LOWER]
+    ${nome_antigo_final}        Set Variable              E${nome_antigo_aleatorio}
+    ${resp_cadastro}            Cadastrar nova diretoria    ${nome_antigo_final}
+    ${id}                       Set Variable              ${resp_cadastro.json()}[newBoard][_id] 
+    ${nome_novo_aleatorio}      Generate Random String    20    [LOWER]
+    ${nome_novo_final}          Set Variable              E${nome_novo_aleatorio}
+    ${resp_edicao}              Editar diretoria          ${id}  ${nome_novo_final}
     Status Should Be             200                       ${resp_edicao}
     Should Contain               ${resp_edicao.text}       Cadastro atualizado com sucesso.
 
-CT13: Não permitir editar o nome para um ja existente  
+CT13: Não permitir editar para um nome já existente  
     [Tags]     PUT    negative
-    ${nome_a}=                   Generate Random String    15    [LOWER]
-    ${nome_a_final}=             Set Variable              A${nome_a}
-    ${resp_a}=                   diretoria.Cadastrar nova diretoria    ${nome_a_final}
-    ${id_a}=                     Set Variable              ${resp_a.json()}[newBoard][_id] 
-    ${nome_b}=                   Generate Random String    15    [LOWER]
-    ${nome_b_final}=             Set Variable              B${nome_b}
-    diretoria.Cadastrar nova diretoria    ${nome_b_final}
-    ${resp_edicao}=              Editar diretoria          ${id_a}    ${nome_b_final}   
+    ${nome_a}                   Generate Random String    15    [LOWER]
+    ${nome_a_final}             Set Variable              A${nome_a}
+    ${resp_a}                   Cadastrar nova diretoria    ${nome_a_final}
+    ${id_a}                     Set Variable              ${resp_a.json()}[newBoard][_id] 
+    ${nome_b}                   Generate Random String    15    [LOWER]
+    ${nome_b_final}             Set Variable              B${nome_b}    
+    ${resp_b}                   Cadastrar nova diretoria    ${nome_b_final}
+    ${resp_edicao}              Editar diretoria          ${id_a}    ${nome_b_final}   
     Status Should Be             409                       ${resp_edicao}
     Should Contain               ${resp_edicao.json()}[alert][0]     Não é possível salvar esse registro. Diretoria já cadastrada no sistema.
 
-CT14: Nao permitir editar o nome para vazio
+CT14: Não permitir editar o nome para vazio
     [Tags]     PUT    negative
-    ${nome}=                     Generate Random String    15    [LOWER]
-    ${resp_cadastro}=            Cadastrar nova diretoria    ${nome}
-    ${id}=                       Set Variable              ${resp_cadastro.json()}[newBoard][_id]
-    ${resp_edicao}=              Editar diretoria          ${id}    ${EMPTY}    
+    ${nome}                     Generate Random String    15    [LOWER]
+    ${resp_cadastro}            Cadastrar nova diretoria    ${nome}
+    ${id}                       Set Variable              ${resp_cadastro.json()}[newBoard][_id]
+    ${resp_edicao}              Editar diretoria          ${id}    ${EMPTY}    
     Status Should Be             400                       ${resp_edicao}
     Should Contain               ${resp_edicao.json()}[error][0]     ${MSG_ERRO_OBRIGATORIO}

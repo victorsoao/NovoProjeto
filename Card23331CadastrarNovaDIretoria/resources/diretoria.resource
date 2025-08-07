@@ -59,11 +59,3 @@ Consultar diretoria por id
     ...                url=/board/${id_diretoria}?token=${AUTH_TOKEN} 
     ...                expected_status=${expected_status}
     RETURN             ${response}
-
-Inativar diretoria
-    [Arguments]    ${id_diretoria}
-    [Documentation]    Envia uma requisição DELETE para inativar uma diretoria (soft delete).
-    ${response}=    DELETE On Session
-    ...             alias=supernatural
-    ...             url=/board/${id_diretoria}?token=${AUTH_TOKEN}
-    RETURN    ${response}
