@@ -39,6 +39,7 @@ robot --include smoke tests/
 ```
 
 ✅ O Que o Projeto Testa
+
 Endpoints de Criação (POST): Testes de sucesso e cenários de erro para garantir a criação correta de diretorias.
 
 Endpoints de Consulta (GET): Validação da consulta por ID e da contagem total de diretorias cadastradas.
