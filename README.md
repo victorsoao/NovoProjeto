@@ -1,5 +1,4 @@
 🚀 Projeto de Automação - API de Diretorias (QA.Coders)
-
 Este projeto é um trabalho de automação de testes de API desenvolvido para o curso QA.Coders. Utilizando o Robot Framework, ele testa as funcionalidades de Criação, Leitura e Edição da API de Diretorias, garantindo que tudo funcione como o esperado.
 
 🛠️ Tecnologias Utilizadas
@@ -13,26 +12,31 @@ Python 3: Linguagem utilizada no projeto.
 1. Configuração Inicial
 Primeiro, clone o repositório e instale as dependências necessárias.
 
-Bash
-
+```bash
 git clone https://coderefinery.github.io/github-without-command-line/doi/
 cd [nome-do-repositorio]
 pip install robotframework robotframework-requests
+```
+
 2. Executando a Suíte de Testes
 Para rodar todos os testes, use o comando:
 
-Bash
-
+```bash
 robot tests/
+```
+
 Para rodar testes específicos, você pode usar as tags definidas no projeto:
 
-Bash
-
-# Executa apenas os testes de criação (POST)
+Executa apenas os testes de criação (POST)
+```bash
 robot --include POST tests/
+```
 
-# Executa apenas os testes de fumaça (smoke tests)
+Executa apenas os testes de fumaça (smoke tests)
+```bash
 robot --include smoke tests/
+```
+
 ✅ O Que o Projeto Testa
 Endpoints de Criação (POST): Testes de sucesso e cenários de erro para garantir a criação correta de diretorias.
 
