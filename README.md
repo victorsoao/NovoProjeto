@@ -1,4 +1,5 @@
 🚀 Projeto de Automação - API de Diretorias (QA.Coders)
+
 Este projeto é um trabalho de automação de testes de API desenvolvido para o curso QA.Coders. Utilizando o Robot Framework, ele testa as funcionalidades de Criação, Leitura e Edição da API de Diretorias, garantindo que tudo funcione como o esperado.
 
 🛠️ Tecnologias Utilizadas
