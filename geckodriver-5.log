@@ -1,0 +1,15 @@
+1755213370329	geckodriver	INFO	Listening on 127.0.0.1:40485
+1755213370367	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "35093" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilekQLY3U"
+Error: Failed to open Wayland display, fallback to X11. WAYLAND_DISPLAY='wayland-0' DISPLAY=':0'
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1755213370968	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1755213371116	Marionette	INFO	Listening on port 36935
+Read port: 36935
+WebDriver BiDi listening on ws://127.0.0.1:35093
+1755213371277	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1755213377516	Marionette	INFO	Stopped listening on port 36935
+console.error: (new AbortError("IndexedDB: main/query-stripping list() IndexedDB:  execute() A request was aborted, for example through a call to IDBTransaction.abort.", "resource://services-settings/IDBHelpers.sys.mjs", 16))
+console.error: (new Error("IndexedDB: main/fingerprinting-protection-overrides list() IndexedDB:  execute() The application is shutting down", "resource://services-settings/IDBHelpers.sys.mjs", 16))

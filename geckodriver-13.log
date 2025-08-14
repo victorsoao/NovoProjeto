@@ -1,0 +1,20 @@
+1755214206787	geckodriver	INFO	Listening on 127.0.0.1:43011
+1755214206824	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "57877" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileRdK7VP"
+Error: Failed to open Wayland display, fallback to X11. WAYLAND_DISPLAY='wayland-0' DISPLAY=':0'
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1755214207426	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1755214207555	Marionette	INFO	Listening on port 40111
+Read port: 40111
+WebDriver BiDi listening on ws://127.0.0.1:57877
+1755214207708	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+JavaScript warning: https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js, line 25: Script terminated by timeout at:
+58303/runOnce/<@https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js:25:19148
+onHiddenOrPageHide@https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js:28:2581
+sentryWrapped@https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js:28:4253
+
+1755214230590	Marionette	INFO	Stopped listening on port 40111

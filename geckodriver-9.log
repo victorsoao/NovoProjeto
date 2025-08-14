@@ -1,0 +1,25 @@
+1755213602831	geckodriver	INFO	Listening on 127.0.0.1:37709
+1755213602869	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "58701" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilejiDn78"
+Error: Failed to open Wayland display, fallback to X11. WAYLAND_DISPLAY='wayland-0' DISPLAY=':0'
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1755213603462	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1755213603659	Marionette	INFO	Listening on port 41035
+Read port: 41035
+WebDriver BiDi listening on ws://127.0.0.1:58701
+1755213603751	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+1755213613356	Marionette	INFO	Stopped listening on port 41035
+JavaScript warning: https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js, line 1: Script terminated by timeout at:
+isSVGElement@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:7042
+serializeElementNode@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:15029
+serializeNode@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:10373
+serializeNodeWithId@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:17830
+pushAdd@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:30777
+45879/MutationBuffer/this.emit@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:32308
+45879/MutationBuffer/this.processMutations@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:30356
+45879/initMutationObserver/o<@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:39336
+45879/callbackWrapper/<@https://supernatural.qacoders.dev.br/_next/static/chunks/52774a7f-1c0c9b8220949e68.js:1:38783
+

@@ -1,0 +1,35 @@
+1755214095428	geckodriver	INFO	Listening on 127.0.0.1:56025
+1755214095467	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "35929" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileFbyexq"
+Error: Failed to open Wayland display, fallback to X11. WAYLAND_DISPLAY='wayland-0' DISPLAY=':0'
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1755214096079	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1755214096205	Marionette	INFO	Listening on port 35269
+Read port: 35269
+WebDriver BiDi listening on ws://127.0.0.1:35929
+1755214096354	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+JavaScript error: resource://devtools/server/connectors/js-process-actor/ContentProcessWatcherRegistry.sys.mjs, line 394: NotFouJavaScript error: resource://devtools/server/connectors/js-process-actor/ContentProcessWatcherRegistry.sys.mjs, line 394: NotFouJavaScript error: resource://devtools/server/connectors/js-process-actor/ContentProcessWatcherRegistry.sys.mjs, line 394: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+ndError: No such JSProcessActor 'DevToolsProcess'
+ndError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: resource://devtools/server/connectors/js-process-actor/ContentProcessWatcherRegistry.sys.mjs, line 394: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: resource://devtools/server/connectors/js-process-actor/ContentProcessWatcherRegistry.sys.mjs, line 394: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: resource://devtools/server/connectors/js-process-actor/ContentProcessWatcherRegistry.sys.mjs, line 394: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+console.error: "update.locale" " file doesn't exist in either the application or GRE directories"
+1755214126082	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript warning: https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js, line 28: Script terminated by timeout at:
+sentryWrapped@https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js:28:4207
+
+1755214126956	Marionette	INFO	Stopped listening on port 35269
+console.warn: services.settings: main/search-telemetry-v2 sync interrupted by shutdown
+console.warn: services.settings: main/search-config-v2 sync interrupted by shutdown
+console.warn: services.settings: main/devtools-compatibility-browsers sync interrupted by shutdown
+console.warn: services.settings: main/translations-models sync interrupted by shutdown
+console.error: (new AbortError("IndexedDB: main/moz-essential-domain-fallbacks getLastModified() IndexedDB:  execute() A request was aborted, for example through a call to IDBTransaction.abort.", "resource://services-settings/IDBHelpers.sys.mjs", 16))

@@ -1,0 +1,17 @@
+1755214933037	geckodriver	INFO	Listening on 127.0.0.1:36457
+1755214933076	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "39945" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile2qqI6I"
+Error: Failed to open Wayland display, fallback to X11. WAYLAND_DISPLAY='wayland-0' DISPLAY=':0'
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1755214933690	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1755214933853	Marionette	INFO	Listening on port 33709
+Read port: 33709
+WebDriver BiDi listening on ws://127.0.0.1:39945
+1755214934006	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+1755214943942	Marionette	INFO	Stopped listening on port 33709
+console.error: (new TypeError("NetworkError: Network request failed", "resource://services-settings/Utils.sys.mjs", 236))

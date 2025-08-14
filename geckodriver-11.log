@@ -1,0 +1,24 @@
+1755213888302	geckodriver	INFO	Listening on 127.0.0.1:39889
+1755213888346	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "56745" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilep1e8lG"
+Error: Failed to open Wayland display, fallback to X11. WAYLAND_DISPLAY='wayland-0' DISPLAY=':0'
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1755213888978	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1755213889109	Marionette	INFO	Listening on port 45097
+Read port: 45097
+WebDriver BiDi listening on ws://127.0.0.1:56745
+1755213889264	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://supernatural.qacoders.dev.br."
+console.error: "update.locale" " file doesn't exist in either the application or GRE directories"
+1755213918981	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript warning: https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js, line 28: Script terminated by timeout at:
+sentryWrapped@https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js:28:4207
+
+1755213921798	Marionette	INFO	Stopped listening on port 45097
+console.warn: services.settings: main/search-config-overrides sync interrupted by shutdown
+console.warn: services.settings: main/query-stripping sync interrupted by shutdown
+console.warn: services.settings: main/addons-manager-settings sync interrupted by shutdown
+console.error: (new AbortError("IndexedDB: main/password-recipes getLastModified() IndexedDB:  execute() A request was aborted, for example through a call to IDBTransaction.abort.", "resource://services-settings/IDBHelpers.sys.mjs", 16))

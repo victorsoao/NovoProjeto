@@ -1,176 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.5 on linux)" generated="2025-08-13T21:52:45.963172" rpa="false" schemaversion="5">
-<suite id="s1" name="Diretoria" source="/home/victor/Vídeos/TesteRobot/Robot-Framework/Card23331CadastrarNovaDIretoria/tests/diretoria.robot">
-<test id="s1-t1" name="CT01: Cadastrar diretoria" line="18">
-<kw name="Realizar Login e Salvar Token" owner="auth" type="SETUP">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-08-13T21:52:46.088095" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
-<var>${headers}</var>
-<arg>accept=application/json</arg>
-<arg>Content-Type=application/json</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-08-13T21:52:46.087481" elapsed="0.001787"/>
+<robot generator="Robot 7.3.2 (Python 3.13.5 on linux)" generated="2025-08-14T20:51:11.666230" rpa="false" schemaversion="5">
+<suite id="s1" name="Board" source="/home/victor/Vídeos/TesteRobot/Robot-Framework/Card23331CadastrarNovaDIretoria/tests/board.robot">
+<test id="s1-t1" name="Abrir Navegador e Acessar Login" line="8">
+<kw name="Abrir Navegador" owner="board" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:11.842814" level="INFO">Opening browser 'firefox' to base url 'None'.</msg>
+<arg>browser=firefox</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-08-14T20:51:11.842328" elapsed="2.632986"/>
 </kw>
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-08-13T21:52:46.090351" level="INFO">Creating Session using : alias=supernatural, url=https://api-supernatural.qacoders.dev.br/api, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
-<arg>alias=supernatural</arg>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-08-14T20:51:14.475874" elapsed="0.256806"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:14.734185" level="INFO">Opening url 'https://supernatural.qacoders.dev.br/login'</msg>
 <arg>url=${BASE_URL}</arg>
-<arg>headers=${headers}</arg>
-<arg>verify=${True}</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-08-13T21:52:46.089657" elapsed="0.001294"/>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-08-14T20:51:14.733285" elapsed="7.684532"/>
 </kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-08-13T21:52:46.091939" level="INFO">${body} = {'mail': 'sysadmin@qacoders.com', 'password': '1234@Test'}</msg>
-<var>${body}</var>
-<arg>mail=sysadmin@qacoders.com</arg>
-<arg>password=1234@Test</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-08-13T21:52:46.091392" elapsed="0.000733"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:22.419373" level="INFO">Typing text 'sysadmin@qacoders.com' into text field '//*[@id="email"]'.</msg>
+<arg>locator=//*[@id="email"]</arg>
+<arg>text=${ADMIN_EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-14T20:51:22.418276" elapsed="0.207934"/>
 </kw>
-<kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-08-13T21:52:52.356186" level="INFO">POST Request : url=https://api-supernatural.qacoders.dev.br/api/login 
- path_url=/api/login 
- headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '58'} 
- body=b'{"mail": "sysadmin@qacoders.com", "password": "1234@Test"}' 
- </msg>
-<msg time="2025-08-13T21:52:52.356892" level="INFO">POST Response : url=https://api-supernatural.qacoders.dev.br/api/login 
- status=200, reason=OK 
- headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '1334', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Thu, 14 Aug 2025 00:52:43 GMT', 'Etag': 'W/"536-Kl/yJCTu8IOz90jntJy8ZxfsIVk"', 'X-Powered-By': 'Express'} 
- body={"msg":"Olá Qa-Coders-SYSADMIN, autenticação autorizada com sucesso!","user":{"_id":"6888ecda6d0acf13553c9eec","fullName":"Qa-Coders-SYSADMIN","mail":"sysadmin@qacoders.com","password":"$2b$10$LgD0Z/OD9TL6XFx2gPEpq.S6JTP1EDgaT/I5LIo7VeMWOqtzQJh2K","accessProfile":"SYSADMIN","cpf":"11111111111","status":true,"audit":[{"registeredBy":{"userId":"111111111111111111","userLogin":"sysadmin@qacoders.com"},"registrationDate":"terça-feira, 29/07/2025, 12:46:34 BRT","registrationNumber":"01","companyId":"Qa.Coders","_id":"6888ecda6d0acf13553c9eed"}],"__v":0},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODg4ZWNkYTZkMGFjZjEzNTUzYzllZWMiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRMZ0QwWi9PRDlUTDZYRngyZ1BFcHEuUzZKVFAxRURnYVQvSTVMSW83VmVNV09xdHpRSmgySyIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoidGVyw6dhLWZlaXJhLCAyOS8wNy8yMDI1LCAxMjo0NjozNCBCUlQiLCJyZWdpc3RyYXRpb25OdW1iZXIiOiIwMSIsImNvbXBhbnlJZCI6IlFhLkNvZGVycyIsIl9pZCI6IjY4ODhlY2RhNmQwYWNmMTM1NTNjOWVlZCJ9XSwiX192IjowLCJpYXQiOjE3NTUxMzI3NjMsImV4cCI6MTc1NTIxOTE2M30.TOskdPmG-3cmWbmrnGZIAiwK0tYKEagrxXflo9KdWGk"} 
- </msg>
-<msg time="2025-08-13T21:52:52.357155" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>alias=supernatural</arg>
-<arg>url=/login</arg>
-<arg>json=${body}</arg>
-<doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-08-13T21:52:46.092372" elapsed="6.264899"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:22.627189" level="INFO">Typing text '1234@Test' into text field '//*[@id="password"]'.</msg>
+<arg>locator=//*[@id="password"]</arg>
+<arg>text=${ADMIN_PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-14T20:51:22.626659" elapsed="0.071109"/>
 </kw>
-<kw name="Status Should Be" owner="RequestsLibrary">
-<arg>200</arg>
-<arg>${response}</arg>
-<doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.357506" elapsed="0.000368"/>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:22.698400" level="INFO">Clicking button '//*[@id="login"]'.</msg>
+<arg>//*[@id="login"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-14T20:51:22.698075" elapsed="0.252717"/>
 </kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-08-13T21:52:52.358703" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODg4ZWNkYTZkMGFjZjEzNTUzYzllZWMiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRMZ0QwWi9...</msg>
-<var>${token}</var>
-<arg>${response.json()["token"]}</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.358049" elapsed="0.000772"/>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-08-14T20:51:22.951168" elapsed="0.841210"/>
 </kw>
-<kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-08-13T21:52:52.359860" level="INFO">${AUTH_TOKEN} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODg4ZWNkYTZkMGFjZjEzNTUzYzllZWMiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRMZ0QwWi9...</msg>
-<arg>${AUTH_TOKEN}</arg>
-<arg>${token}</arg>
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.359002" elapsed="0.001039"/>
+<status status="PASS" start="2025-08-14T20:51:11.841289" elapsed="11.951428"/>
 </kw>
-<doc>Realiza o login com um usuário fixo e salva o token de autenticação
-para ser usado por toda a suíte de testes.</doc>
-<status status="PASS" start="2025-08-13T21:52:46.086485" elapsed="6.273701"/>
+<kw name="Abrir Navegador" owner="board">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:23.794296" level="INFO">Opening browser 'firefox' to base url 'None'.</msg>
+<arg>browser=firefox</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-08-14T20:51:23.793896" elapsed="2.643804"/>
 </kw>
-<kw name="Generate Random String" owner="String">
-<msg time="2025-08-13T21:52:52.361142" level="INFO">${nome_randomico} = kqkbsvkfam</msg>
-<var>${nome_randomico}</var>
-<arg>10</arg>
-<arg>[LOWER]</arg>
-<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.360587" elapsed="0.001291"/>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-08-14T20:51:26.438061" elapsed="0.257941"/>
 </kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-08-13T21:52:52.363757" level="INFO">${nome_base} = Ekqkbsvkfam</msg>
-<var>${nome_base}</var>
-<arg>E${nome_randomico}</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.362692" elapsed="0.001421"/>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:26.696619" level="INFO">Opening url 'https://supernatural.qacoders.dev.br/login'</msg>
+<arg>url=${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-08-14T20:51:26.696327" elapsed="2.205733"/>
 </kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-08-13T21:52:52.365814" level="INFO">${body} = {'name': 'kqkbsvkfam'}</msg>
-<var>${body}</var>
-<arg>name=${nome_randomico}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.364846" elapsed="0.001259"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:28.903454" level="INFO">Typing text 'sysadmin@qacoders.com' into text field '//*[@id="email"]'.</msg>
+<arg>locator=//*[@id="email"]</arg>
+<arg>text=${ADMIN_EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-14T20:51:28.902668" elapsed="0.192302"/>
 </kw>
-<kw name="Cadastrar nova diretoria" owner="diretoria">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-08-13T21:52:52.369033" level="INFO">${body} = {'boardName': 'kqkbsvkfam'}</msg>
-<var>${body}</var>
-<arg>boardName=${nome_diretoria}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.368236" elapsed="0.001309"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:29.095693" level="INFO">Typing text '1234@Test' into text field '//*[@id="password"]'.</msg>
+<arg>locator=//*[@id="password"]</arg>
+<arg>text=${ADMIN_PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-14T20:51:29.095272" elapsed="0.065590"/>
 </kw>
-<kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-08-13T21:52:52.557446" level="INFO">POST Request : url=https://api-supernatural.qacoders.dev.br/api/board?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODg4ZWNkYTZkMGFjZjEzNTUzYzllZWMiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRMZ0QwWi9PRDlUTDZYRngyZ1BFcHEuUzZKVFAxRURnYVQvSTVMSW83VmVNV09xdHpRSmgySyIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoidGVyw6dhLWZlaXJhLCAyOS8wNy8yMDI1LCAxMjo0NjozNCBCUlQiLCJyZWdpc3RyYXRpb25OdW1iZXIiOiIwMSIsImNvbXBhbnlJZCI6IlFhLkNvZGVycyIsIl9pZCI6IjY4ODhlY2RhNmQwYWNmMTM1NTNjOWVlZCJ9XSwiX192IjowLCJpYXQiOjE3NTUxMzI3NjMsImV4cCI6MTc1NTIxOTE2M30.TOskdPmG-3cmWbmrnGZIAiwK0tYKEagrxXflo9KdWGk 
- path_url=/api/board?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODg4ZWNkYTZkMGFjZjEzNTUzYzllZWMiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRMZ0QwWi9PRDlUTDZYRngyZ1BFcHEuUzZKVFAxRURnYVQvSTVMSW83VmVNV09xdHpRSmgySyIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoidGVyw6dhLWZlaXJhLCAyOS8wNy8yMDI1LCAxMjo0NjozNCBCUlQiLCJyZWdpc3RyYXRpb25OdW1iZXIiOiIwMSIsImNvbXBhbnlJZCI6IlFhLkNvZGVycyIsIl9pZCI6IjY4ODhlY2RhNmQwYWNmMTM1NTNjOWVlZCJ9XSwiX192IjowLCJpYXQiOjE3NTUxMzI3NjMsImV4cCI6MTc1NTIxOTE2M30.TOskdPmG-3cmWbmrnGZIAiwK0tYKEagrxXflo9KdWGk 
- headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '27'} 
- body=b'{"boardName": "kqkbsvkfam"}' 
- </msg>
-<msg time="2025-08-13T21:52:52.558149" level="INFO">POST Response : url=https://api-supernatural.qacoders.dev.br/api/board?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODg4ZWNkYTZkMGFjZjEzNTUzYzllZWMiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRMZ0QwWi9PRDlUTDZYRngyZ1BFcHEuUzZKVFAxRURnYVQvSTVMSW83VmVNV09xdHpRSmgySyIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoidGVyw6dhLWZlaXJhLCAyOS8wNy8yMDI1LCAxMjo0NjozNCBCUlQiLCJyZWdpc3RyYXRpb25OdW1iZXIiOiIwMSIsImNvbXBhbnlJZCI6IlFhLkNvZGVycyIsIl9pZCI6IjY4ODhlY2RhNmQwYWNmMTM1NTNjOWVlZCJ9XSwiX192IjowLCJpYXQiOjE3NTUxMzI3NjMsImV4cCI6MTc1NTIxOTE2M30.TOskdPmG-3cmWbmrnGZIAiwK0tYKEagrxXflo9KdWGk 
- status=201, reason=Created 
- headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '346', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Thu, 14 Aug 2025 00:52:44 GMT', 'Etag': 'W/"15a-73EhLxp1hjfkgDv4Ab24W6LPxQk"', 'X-Powered-By': 'Express'} 
- body={"msg":"Cadastro realizado com sucesso!","newBoard":{"boardName":"kqkbsvkfam","boardCode":"369","status":true,"audit":[{"registrationDate":"quarta-feira, 13/08/2025, 21:52:44 BRT","registeredBy":{"userId":"6888ecda6d0acf13553c9eec","userLogin":"sysadmin@qacoders.com"},"_id":"689d335ce56b350eb6707753"}],"_id":"689d335ce56b350eb6707752","__v":0}} 
- </msg>
-<msg time="2025-08-13T21:52:52.558908" level="INFO">${response} = &lt;Response [201]&gt;</msg>
-<var>${response}</var>
-<arg>alias=supernatural</arg>
-<arg>url=/board?token=${AUTH_TOKEN}</arg>
-<arg>json=${body}</arg>
-<arg>expected_status=any</arg>
-<doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.369924" elapsed="0.189370"/>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-08-14T20:51:29.161483" level="INFO">Clicking button '//*[@id="login"]'.</msg>
+<arg>//*[@id="login"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-14T20:51:29.161164" elapsed="0.261821"/>
 </kw>
-<return>
-<value>${response}</value>
-<status status="PASS" start="2025-08-13T21:52:52.559742" elapsed="0.000430"/>
-</return>
-<msg time="2025-08-13T21:52:52.560580" level="INFO">${resp} = &lt;Response [201]&gt;</msg>
-<var>${resp}</var>
-<arg>${nome_randomico}</arg>
-<doc>Envia uma requisição POST para criar uma nova diretoria.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.367070" elapsed="0.193682"/>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-08-14T20:51:29.423287" elapsed="1.744433"/>
 </kw>
-<kw name="Status Should Be" owner="RequestsLibrary">
-<arg>201</arg>
-<arg>${resp}</arg>
-<doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.561322" elapsed="0.000694"/>
+<status status="PASS" start="2025-08-14T20:51:23.793326" elapsed="7.374637"/>
 </kw>
-<kw name="Dictionary Should Contain Key" owner="Collections">
-<arg>${resp.json()}</arg>
-<arg>newBoard</arg>
-<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.562783" elapsed="0.001612"/>
-</kw>
-<kw name="Dictionary Should Contain Key" owner="Collections">
-<arg>${resp.json()}[newBoard]</arg>
-<arg>_id</arg>
-<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.565027" elapsed="0.001245"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${resp.json()}[newBoard][boardName]</arg>
-<arg>${nome_randomico}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-08-13T21:52:52.566759" elapsed="0.001035"/>
-</kw>
-<tag>POST</tag>
-<tag>smoke</tag>
-<status status="PASS" start="2025-08-13T21:52:46.085194" elapsed="6.483136"/>
+<status status="PASS" start="2025-08-14T20:51:11.840332" elapsed="19.327941"/>
 </test>
-<status status="PASS" start="2025-08-13T21:52:45.966652" elapsed="6.602533"/>
+<status status="PASS" start="2025-08-14T20:51:11.669808" elapsed="19.499302"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">POST</stat>
-<stat pass="1" fail="0" skip="0">smoke</stat>
 </tag>
 <suite>
-<stat name="Diretoria" id="s1" pass="1" fail="0" skip="0">Diretoria</stat>
+<stat name="Board" id="s1" pass="1" fail="0" skip="0">Board</stat>
 </suite>
 </statistics>
 <errors>

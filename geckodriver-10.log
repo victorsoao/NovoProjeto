@@ -1,0 +1,30 @@
+1755213645573	geckodriver	INFO	Listening on 127.0.0.1:37785
+1755213645612	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "48567" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileqAuYt2"
+Error: Failed to open Wayland display, fallback to X11. WAYLAND_DISPLAY='wayland-0' DISPLAY=':0'
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1755213646219	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1755213646352	Marionette	INFO	Listening on port 37421
+Read port: 37421
+WebDriver BiDi listening on ws://127.0.0.1:48567
+1755213646506	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+1755213650546	Marionette	INFO	Stopped listening on port 37421
+JavaScript warning: https://supernatural.qacoders.dev.br/_next/static/chunks/430-a56e9c2132898c9e.js, line 1: Script terminated by timeout at:
+handleInterpolation@https://supernatural.qacoders.dev.br/_next/static/chunks/430-a56e9c2132898c9e.js:1:14794
+createStringFromObject@https://supernatural.qacoders.dev.br/_next/static/chunks/430-a56e9c2132898c9e.js:1:15774
+handleInterpolation@https://supernatural.qacoders.dev.br/_next/static/chunks/430-a56e9c2132898c9e.js:1:15112
+handleInterpolation@https://supernatural.qacoders.dev.br/_next/static/chunks/430-a56e9c2132898c9e.js:1:15198
+serializeStyles@https://supernatural.qacoders.dev.br/_next/static/chunks/430-a56e9c2132898c9e.js:1:16112
+14567/createStyled/y/k<@https://supernatural.qacoders.dev.br/_next/static/chunks/430-a56e9c2132898c9e.js:1:21885
+86375/withEmotionCache/<@https://supernatural.qacoders.dev.br/_next/static/chunks/430-a56e9c2132898c9e.js:1:12706
+Mf@https://supernatural.qacoders.dev.br/_next/static/chunks/fd9d1056-9d4fb47df0148f5a.js:9:39686
+vh@https://supernatural.qacoders.dev.br/_next/static/chunks/fd9d1056-9d4fb47df0148f5a.js:9:57277
+rC@https://supernatural.qacoders.dev.br/_next/static/chunks/fd9d1056-9d4fb47df0148f5a.js:9:115143
+Jk@https://supernatural.qacoders.dev.br/_next/static/chunks/fd9d1056-9d4fb47df0148f5a.js:9:102247
+Mk@https://supernatural.qacoders.dev.br/_next/static/chunks/fd9d1056-9d4fb47df0148f5a.js:9:102219
+tk@https://supernatural.qacoders.dev.br/_next/static/chunks/fd9d1056-9d4fb47df0148f5a.js:9:102073
+qf@https://supernatural.qacoders.dev.br/_next/static/chunks/fd9d1056-9d4fb47df0148f5a.js:9:97936
+P@https://supernatural.qacoders.dev.br/_next/static/chunks/60-03acd893cb63adc7.js:25:1666
+
