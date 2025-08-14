@@ -11,6 +11,8 @@
 # Ignora arquivos de ambientes virtuais
 venv/
 .env
+venv
+GithubProjeto
 
 # Ignora dependências do Robot Framework
 __pycache__/
