@@ -12,7 +12,7 @@ Test Setup      Realizar Login e Salvar Token
 
 *** Test Cases ***
 # ==================================================================================================
-#            --- Testes de (POST) ---
+#            --- Testes de (POST) ---     TEtetetetetetet
 # ==================================================================================================
 
 CT01: Cadastrar diretoria
@@ -97,7 +97,7 @@ CT08: Não permitir cadastro de diretoria com caracteres especiais inválidos
         Status Should Be    400    ${resp_erro}
         Should Contain    ${resp_erro.json()}[error][0]    ${MSG_ERRO_CHARS_INVALIDOS}
     END
-CT08: Nao permitir cadastrar diretoria com caracteres especiais invalidos
+CT09: Nao permitir cadastrar diretoria com caracteres especiais invalidos
     [Tags]     POST    negative
     ${nome_invalido}=            Set Variable              Diretoria @#$%
     ${body}=                     Create Dictionary         name=${nome_invalido}
@@ -109,17 +109,17 @@ CT08: Nao permitir cadastrar diretoria com caracteres especiais invalidos
 #            ---  Testes de (GET) ---
 # ==================================================================================================
 
-CT09: Consultar a lista de diretorias
+CT10: Consultar a lista de diretorias
     [Tags]    GET    smoke
     ${resp}=    Consultar diretorias
     Status Should Be    200    ${resp}
 
-CT10: Consultar contagem de diretorias
+CT11: Consultar contagem de diretorias
     [Tags]     GET    smoke    count 
     ${resp}=   Contar Diretorias
     Status Should Be    200    ${resp}
 
-CT11: Consultar diretoria pelo seu ID
+CT12: Consultar diretoria pelo seu ID
     [Tags]     GET    smoke    ponta-a-ponta
     ${nome_aleatorio}=           Generate Random String    15    [LOWER]
     ${nome_para_criar}=          Set Variable              E${nome_aleatorio}
@@ -134,7 +134,7 @@ CT11: Consultar diretoria pelo seu ID
 #            --- Testes de Edição (PUT) ---
 # ==================================================================================================
 
-CT12: Editar o nome de uma diretoria
+CT13: Editar o nome de uma diretoria
     [Tags]     PUT    smoke
     ${nome_antigo_aleatorio}    Generate Random String    20    [LOWER]
     ${nome_antigo_final}        Set Variable              E${nome_antigo_aleatorio}
@@ -146,7 +146,7 @@ CT12: Editar o nome de uma diretoria
     Status Should Be             200                       ${resp_edicao}
     Should Contain               ${resp_edicao.text}       Cadastro atualizado com sucesso.
 
-CT13: Não permitir editar para um nome já existente  
+CT14: Não permitir editar para um nome já existente  
     [Tags]     PUT    negative
     ${nome_a}                   Generate Random String    15    [LOWER]
     ${nome_a_final}             Set Variable              A${nome_a}
@@ -159,7 +159,7 @@ CT13: Não permitir editar para um nome já existente
     Status Should Be             409                       ${resp_edicao}
     Should Contain               ${resp_edicao.json()}[alert][0]     Não é possível salvar esse registro. Diretoria já cadastrada no sistema.
 
-CT14: Não permitir editar o nome para vazio
+CT15: Não permitir editar o nome para vazio
     [Tags]     PUT    negative
     ${nome}                     Generate Random String    15    [LOWER]
     ${resp_cadastro}            Cadastrar nova diretoria    ${nome}
