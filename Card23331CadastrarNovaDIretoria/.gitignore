@@ -15,6 +15,9 @@ venv
 log
 output
 report
+geckodriver/
+selenium-screenshot/
+config.resource/
 
 # Ignora dependências do Robot Framework
 __pycache__/
