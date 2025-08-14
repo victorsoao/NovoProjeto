@@ -12,7 +12,9 @@
 venv/
 .env
 venv
-GithubProjeto
+log
+output
+report
 
 # Ignora dependências do Robot Framework
 __pycache__/
