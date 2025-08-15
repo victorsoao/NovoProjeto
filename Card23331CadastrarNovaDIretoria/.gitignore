@@ -17,7 +17,7 @@ output
 report
 geckodriver/
 selenium-screenshot/
-config.resource/
+config.resource
 
 # Ignora dependências do Robot Framework
 __pycache__/
