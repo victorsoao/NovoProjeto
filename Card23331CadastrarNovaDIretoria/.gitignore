@@ -17,7 +17,7 @@ output
 report
 geckodriver/
 selenium-screenshot/
-Robot-Framework/Card23331CadastrarNovaDiretoria/resources/config.resource
+/TesteRobot/Robot-Framework/Card23331CadastrarNovaDIretoria/resources/config.resource
 
 # Ignora dependências do Robot Framework
 __pycache__/
