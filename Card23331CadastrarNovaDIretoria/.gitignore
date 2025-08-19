@@ -7,6 +7,9 @@
 *.log
 /build/
 /dist/
+reports/
+geckdriver/
+screenshots/
 
 # Ignora arquivos de ambientes virtuais
 venv/
@@ -16,7 +19,7 @@ log
 output
 report
 geckodriver/
-selenium-screenshot/
+selenium-screenshot
 /TesteRobot/Robot-Framework/Card23331CadastrarNovaDIretoria/resources/config.resource
 
 # Ignora dependências do Robot Framework
